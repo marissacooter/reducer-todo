@@ -11,11 +11,9 @@ const reducer = (state, action) => {
         case 'ADD_TODO':
             return state.concat(action.payload)
         case 'MARK_TODO':
-            return {
-                ...state,
-                editing: false,
-                title: action.payload
-            }
+            return state.map(todo => 
+                todo.id === action.payload ? {...todo, completed: true} : todo
+            )
         case 'CLEAR_TODO':
             return {
                 ...state,
