@@ -15,10 +15,9 @@ const reducer = (state, action) => {
                 todo.id === action.payload ? {...todo, completed: true} : todo
             )
         case 'CLEAR_TODO':
-            return {
-                ...state,
-                editing: false
-            }
+           return state.filter(todo => !todo.completed)
+        default: 
+           return state
     }
 }
 export default reducer;

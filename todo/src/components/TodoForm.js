@@ -28,7 +28,9 @@ const TodoForm = (props) => {
       >
         Add
       </button>
-      <button onClick={handleChanges}>Clear</button>
+      <button onClick={ e => {
+           e.preventDefault();
+          props.dispatch({type:'CLEAR_TODO'})}}>Clear</button>
     </form>
   );
 };
