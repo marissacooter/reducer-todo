@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const TodoForm = (props) => {
   const [newTodoText, setNewTodoText] = useState("");
 
   const handleChanges = (e) => {
     e.preventDefault();
-    setNewTodoText( e.target.value );
+    setNewTodoText(e.target.value);
   };
 
   return (
@@ -19,12 +20,15 @@ const TodoForm = (props) => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          props.addToDo(newTodoText);
+          props.dispatch({
+            type: "ADD_TODO",
+            payload: { item: newTodoText, completed: false, id: uuidv4() },
+          });
         }}
       >
         Add
       </button>
-      <button onClick={handleClear}>Clear</button>
+      <button onClick={handleChanges}>Clear</button>
     </form>
   );
 };
