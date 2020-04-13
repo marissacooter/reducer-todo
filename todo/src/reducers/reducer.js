@@ -12,7 +12,17 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 editing: true
-            };
+            }
+        case 'MARK_TODO':
+            return {
+                ...state,
+                editing: true
+            }
+        case 'CLEAR_TODO':
+            return {
+                ...state,
+                editing: true
+            }
     }
 }
 
@@ -27,14 +37,34 @@ const addTodo = () => {
 
     return (
         <div>
-            <input
-                className='todo-input'
-                type='text'
-                name='newTodoText'
-                value={newTodoText}
-                onChange={handleChanges}
-            />
+            {!state.editing ? (
+                <h1>
+                    {state.todo}{' '}
+                    <i
+                        onClick={() => dispatch({type: 'ADD_TODO'})}
+                        className='far fa-edit'
+                    />
+                </h1>
+            ) : (
+                 <div>
+                    <input
+                        className='todo-input'
+                        type='text'
+                        name='newTodoText'
+                        value={newTodoText}
+                        onChange={handleChanges}
+                    />
+                    <button
+                        onClick={() =>
+                            dispatch({ type: 'MARK_TODO', payload: newTodoText })
+                        }
+                    >
+                        Mark Todo    
+                    </button>    
+                </div>
+            )}
         </div>
+    );
+};
 
-    )
-}
+export default Reducer;
