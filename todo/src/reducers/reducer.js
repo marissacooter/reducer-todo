@@ -26,7 +26,15 @@ const addTodo = () => {
     };
 
     return (
+        <div>
+            <input
+                className='todo-input'
+                type='text'
+                name='newTodoText'
+                value={newTodoText}
+                onChange={handleChanges}
+            />
+        </div>
 
-        
     )
 }
